@@ -98,9 +98,12 @@ const shoppingList = (function(){
     $('.js-shopping-list').on('submit', '.js-edit-item', event => {
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
-      const itemName = $(event.currentTarget).find('.shopping-item').val();
-      store.findAndUpdate(id, itemName);
-      render();
+      const newName = $(event.currentTarget).find('.shopping-item').val();
+      api.updateItem(id, {name:newName}, (response) =>
+      {
+        store.findAndUpdate(id, {name:newName});
+        render();
+      });
     });
   }
   

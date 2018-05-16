@@ -10,23 +10,26 @@ const api = (function(){
   const createItem = function(name, callback){
     const newItem = {name};
     const stringified = JSON.stringify(newItem);
-    $.ajax({
+    const ob = {
       url: `${BASE_URL}/items`,
       method: 'POST',
       contentType: 'application/json',
       data: stringified,
       success: callback,
-    });
+    };
+    //console.log(ob);
+    $.ajax(ob);
   };
   const updateItem = function(id, updateData, callback){
-    $.ajax({
+    const ob = {
       url: `${BASE_URL}/items/${id}`,
       method:'PATCH',
-      contentType: 'application/JSON',
+      contentType: 'application/json',
       data: JSON.stringify(updateData),
       success: callback,
-
-    });
+    };
+    //console.log(ob);
+    $.ajax(ob);
   };
 
   return {
